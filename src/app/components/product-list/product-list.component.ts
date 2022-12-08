@@ -29,14 +29,17 @@ export class ProductListComponent implements OnInit {
 
     if (hasCategoryId) {
       // get the "id" param string. convert string to a number using the "+" symbol
-      this.currentCategoryId = +this.route.snapshot.paramMap.has('id');
+      // @ts-ignore: Object is possibly 'null'
+      this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
     } else {
       this.currentCategoryId = 1;
     }
 
     // now get the products for the given category id
-    this.productService.getProductList(this.currentCategoryId).subscribe((data) => {
-      this.products = data;
-    });
+    this.productService
+      .getProductList(this.currentCategoryId)
+      .subscribe((data) => {
+        this.products = data;
+      });
   }
 }
