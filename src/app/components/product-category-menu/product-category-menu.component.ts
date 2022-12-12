@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-category-menu.component.css'],
 })
 export class ProductCategoryMenuComponent implements OnInit {
-  ProductCategories: ProductCategory[];
+  productCategories: ProductCategory[];
+  productCategoryName: string;
 
   constructor(private ProductService: ProductService) {}
 
@@ -19,7 +20,7 @@ export class ProductCategoryMenuComponent implements OnInit {
   listProductCategories() {
     this.ProductService.getProductCategories().subscribe((data) => {
       console.log('product Categories=' + JSON.stringify(data));
-      this.ProductCategories = data;
+      this.productCategories = data;
     });
   }
 }
