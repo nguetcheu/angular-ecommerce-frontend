@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class ProductService {
   private baseUrl = 'http://localhost:8080/api/products';
 
-  private categoryurl = 'http://localhost:8080/api/product-category';
+  private categoryUrl = 'http://localhost:8080/api/product-category';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +26,7 @@ export class ProductService {
 
   getProductCategories(): Observable<ProductCategory[]> {
     return this.httpClient
-      .get<GetResponseProductsCategory>(this.categoryurl)
+      .get<GetResponseProductCategory>(this.categoryUrl)
       .pipe(map((response) => response._embedded.productCategory));
   }
 }
@@ -37,7 +37,7 @@ interface GetResponseProducts {
   };
 }
 
-interface GetResponseProductsCategory {
+interface GetResponseProductCategory {
   _embedded: {
     productCategory: ProductCategory[];
   };
